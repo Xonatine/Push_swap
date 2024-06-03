@@ -6,7 +6,7 @@
 /*   By: frlorenz <frlorenz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:19:23 by frlorenz          #+#    #+#             */
-/*   Updated: 2024/05/28 19:50:12 by frlorenz         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:51:28 by frlorenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,23 @@ char	**memfree(char **array, int j)
 	return (0);
 }
 
+void	free_stack(t_list_node **stack)
+{
+	t_list_node	*tmp;
+	t_list_node	*current;
+
+	if (NULL == stack)
+		return ;
+	current = *stack;
+	while (current)
+	{
+		tmp = current->next;
+		free(current);
+		current = tmp;
+	}
+	*stack = NULL;
+}
+
 int	main(int argc, char **argv)
 {
 	t_list_node	*a;
@@ -50,9 +67,12 @@ int	main(int argc, char **argv)
 			argv[i++] = temp[j++];
 		if (temp[0] != NULL)
 			argc = i;
+		push_swap(a, b, argc, argv);
+		memfree(temp, i);
 	}
-	push_swap(a, b, argc, argv);
-	exit(-1);
+	else
+		push_swap(a, b, argc, argv);
+	exit(0);
 	return (0);
 }
 
@@ -71,7 +91,8 @@ static void	push_swap(t_list_node *a, t_list_node *b, int argc, char **argv)
 		else
 			sort_huge_stack(&a, &b);
 	}
-	exit(-1);
+	free_stack(&a);
+	free_stack(&b);
 }
 
 static int	error(int argc, char **argv)
@@ -79,11 +100,13 @@ static int	error(int argc, char **argv)
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 	{
 		ft_putstr_fd("Error\n", 2);
+		exit(1);
 		return (0);
 	}
 	else if (checkin(argc, argv) == 0)
 	{
 		ft_putstr_fd("Error\n", 2);
+		exit(1);
 		return (0);
 	}
 	return (1);

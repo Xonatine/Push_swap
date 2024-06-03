@@ -6,7 +6,7 @@
 /*   By: frlorenz <frlorenz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 11:47:50 by frlorenz          #+#    #+#             */
-/*   Updated: 2024/05/28 17:46:16 by frlorenz         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:58:58 by frlorenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void		init_nodes(t_list_node *a, t_list_node *b);
 void		finish_rotation(t_list_node **stack, t_list_node *top, char s);
 void		move_nodes(t_list_node **a, t_list_node **b);
 char		**memfree(char **array, int j);
+void		free_stack(t_list_node **stack);
 
 #endif

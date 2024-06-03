@@ -6,7 +6,7 @@
 /*   By: frlorenz <frlorenz@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:58:09 by frlorenz          #+#    #+#             */
-/*   Updated: 2024/05/28 18:16:53 by frlorenz         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:41:55 by frlorenz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	fill_stack(t_list_node **stack, int argc, char **argv)
 		if (!node)
 		{
 			memfree(argv, argc);
+			free_stack(stack);
 			return (0);
 		}
 		attach_node(stack, node);

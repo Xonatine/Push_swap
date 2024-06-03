@@ -14,7 +14,7 @@ OBJS = $(SOURCE:.c=.o)
 
 LDFLAGS= -L libft -l ft
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 MAKEFLAGS = --no-print-directory
 
 all:$(NAME)
